@@ -17,13 +17,14 @@ object HelloWorld {
     val spark = SparkSession
       .builder()
       .appName("Spark SQL basic example")
-      .config("spark.some.config.option", "some-value")
+//      .config("spark.some.config.option", "some-value")
+      .master("local[2]")
       .getOrCreate()
 
     // For implicit conversions like converting RDDs to DataFrames
     import spark.implicits._
 
-    val df = spark.read.json("examples/src/main/resources/people.json")
+    val df = spark.read.json("E:\\0JAVA\\spark\\doc\\people.txt")
 
     // Displays the content of the DataFrame to stdout
     df.show()

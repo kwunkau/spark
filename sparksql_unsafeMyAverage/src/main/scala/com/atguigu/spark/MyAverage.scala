@@ -44,7 +44,8 @@ object MyAverage extends UserDefinedAggregateFunction {
     val spark = SparkSession
       .builder()
       .appName("Spark SQL basic example")
-      .config("spark.some.config.option", "some-value")
+//      .config("spark.some.config.option", "some-value")
+      .master("local[2]")
       .getOrCreate()
 
     // For implicit conversions like converting RDDs to DataFrames
@@ -52,7 +53,7 @@ object MyAverage extends UserDefinedAggregateFunction {
 
     spark.udf.register("myAverage", MyAverage)
 
-    val df = spark.read.json("examples/src/main/resources/employees.json")
+    val df = spark.read.json("E:\\0JAVA\\spark\\doc\\employess.txt")
     df.createOrReplaceTempView("employees")
     df.show()
 
